@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Arc\" />
+    <Folder Include="Gui\" />
+    <Folder Include="Gmd\" />
+    <Folder Include="Apk\" />
+    <Folder Include="Sew\" />
+    <Folder Include="Sngw\" />
+    <Folder Include="Tex\" />
+    <Folder Include="Obb\GenericObb\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryUtils\BinaryUtils.csproj" />
+  </ItemGroup>
+
+</Project>
