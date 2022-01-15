@@ -1,4 +1,4 @@
-﻿namespace Ace_Attoney_Android_MT_Suite.Views
+﻿namespace AceAttoney.Android.MTSuite.GUI.Views
 {
     partial class ZipObb
     {

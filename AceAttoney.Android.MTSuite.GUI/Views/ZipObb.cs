@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ace_Attoney_Android_MT_Suite.Views
+namespace AceAttoney.Android.MTSuite.GUI.Views
 {
     public partial class ZipObb : Form
     {

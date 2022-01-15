@@ -1,4 +1,4 @@
-﻿namespace Ace_Attoney_Android_MT_Suite.Views
+﻿namespace AceAttoney.Android.MTSuite.GUI.Views
 {
     partial class CapcomObbView
     {
@@ -123,7 +123,7 @@
             // SaveIconButton
             // 
             this.SaveIconButton.AutoSize = true;
-            this.SaveIconButton.Image = global::Ace_Attoney_Android_MT_Suite.Properties.Resources.SaveIcon;
+            this.SaveIconButton.Image = global::AceAttoney.Android.MTSuite.GUI.Properties.Resources.SaveIcon;
             this.SaveIconButton.Location = new System.Drawing.Point(14, 31);
             this.SaveIconButton.Name = "SaveIconButton";
             this.SaveIconButton.Size = new System.Drawing.Size(13, 15);

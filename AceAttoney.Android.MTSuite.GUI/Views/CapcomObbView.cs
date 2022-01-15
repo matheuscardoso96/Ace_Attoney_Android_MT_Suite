@@ -2,7 +2,7 @@
 using MTTools.Utils;
 using System.Data;
 
-namespace Ace_Attoney_Android_MT_Suite.Views
+namespace AceAttoney.Android.MTSuite.GUI.Views
 {
     public partial class CapcomObbView : Form
     {

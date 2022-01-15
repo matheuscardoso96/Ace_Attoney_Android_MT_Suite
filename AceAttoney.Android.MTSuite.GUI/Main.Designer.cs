@@ -1,4 +1,4 @@
-﻿namespace Ace_Attoney_Android_MT_Suite
+﻿namespace AceAttoney.Android.MTSuite.GUI
 {
     partial class Main
     {

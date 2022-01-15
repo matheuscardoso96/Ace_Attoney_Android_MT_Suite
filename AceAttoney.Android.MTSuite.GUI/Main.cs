@@ -1,8 +1,6 @@
-﻿using Ace_Attoney_Android_MT_Suite.Views;
-using MTTools.Obb.CapcomObb;
-using MTTools.Obb.CapcomObb.FileMap;
+﻿using AceAttoney.Android.MTSuite.GUI.Views;
 
-namespace Ace_Attoney_Android_MT_Suite
+namespace AceAttoney.Android.MTSuite.GUI
 {
     public partial class Main : Form
     {
