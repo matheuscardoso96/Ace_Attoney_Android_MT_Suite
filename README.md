@@ -3,8 +3,8 @@ A tool to help edit MT Framework Android Ace Attorney Games
 
 # todo list:
 
-- [ ] Capcom Obb
-- [ ] Movie Generic Obb
+- [X] Capcom Obb
+- [X] Movie Generic Obb
 - [ ] APK
 - [ ] Arc
 - [ ] Gmd
