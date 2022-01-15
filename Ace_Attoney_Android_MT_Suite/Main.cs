@@ -16,5 +16,11 @@ namespace Ace_Attoney_Android_MT_Suite
             CapcomObbView capcomObbView = new();
             capcomObbView.ShowDialog();
         }
+
+        private void OpenMovieObbToolClick(object sender, EventArgs e)
+        {
+            ZipObb zipObb = new();
+            zipObb.ShowDialog();
+        }
     }
 }

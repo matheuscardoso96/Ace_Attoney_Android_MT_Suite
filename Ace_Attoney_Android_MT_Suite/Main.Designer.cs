@@ -31,7 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.obbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenCapcomObbToolMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.LabelProgress = new System.Windows.Forms.Label();
+            this.OpenMovieObbOMS = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,8 @@
             // obbToolStripMenuItem
             // 
             this.obbToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenCapcomObbToolMenu});
+            this.OpenCapcomObbToolMenu,
+            this.OpenMovieObbOMS});
             this.obbToolStripMenuItem.Name = "obbToolStripMenuItem";
             this.obbToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.obbToolStripMenuItem.Text = "Obb";
@@ -56,25 +57,22 @@
             // OpenCapcomObbToolMenu
             // 
             this.OpenCapcomObbToolMenu.Name = "OpenCapcomObbToolMenu";
-            this.OpenCapcomObbToolMenu.Size = new System.Drawing.Size(180, 22);
-            this.OpenCapcomObbToolMenu.Text = "Open Tool";
+            this.OpenCapcomObbToolMenu.Size = new System.Drawing.Size(184, 22);
+            this.OpenCapcomObbToolMenu.Text = "Tool de main obb";
             this.OpenCapcomObbToolMenu.Click += new System.EventHandler(this.OpenCapcomObbTool);
             // 
-            // LabelProgress
+            // OpenMovieObbOMS
             // 
-            this.LabelProgress.AutoSize = true;
-            this.LabelProgress.Location = new System.Drawing.Point(16, 56);
-            this.LabelProgress.Name = "LabelProgress";
-            this.LabelProgress.Size = new System.Drawing.Size(33, 15);
-            this.LabelProgress.TabIndex = 1;
-            this.LabelProgress.Text = "Teste";
+            this.OpenMovieObbOMS.Name = "OpenMovieObbOMS";
+            this.OpenMovieObbOMS.Size = new System.Drawing.Size(184, 22);
+            this.OpenMovieObbOMS.Text = "Tool de obb de vídeo";
+            this.OpenMovieObbOMS.Click += new System.EventHandler(this.OpenMovieObbToolClick);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.LabelProgress);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
@@ -91,6 +89,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem obbToolStripMenuItem;
         private ToolStripMenuItem OpenCapcomObbToolMenu;
-        private Label LabelProgress;
+        private ToolStripMenuItem OpenMovieObbOMS;
     }
 }
