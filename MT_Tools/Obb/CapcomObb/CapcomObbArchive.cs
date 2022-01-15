@@ -97,7 +97,7 @@ namespace MTTools.Obb.CapcomObb
 
             
             FileInfo fileF = new (filePath);
-            File.Copy(path, $"_temp\\{fileF.FullName}", true);
+            File.Copy(path, $"_temp\\{filePath}", true);
             
             fileProperties.WasModified = true;
             fileProperties.ContentJamCrc32 = (int)JamCrcCalculator.GetJamCrc32FromFile(fileF);
@@ -106,30 +106,17 @@ namespace MTTools.Obb.CapcomObb
 
         public void ImportMultipleFiles(string path, string virtualPath)
         {
-            //var properties = FilesProperties.Where(kp => kp.Value.FilePath is not null && kp.Value.FilePath.Contains(virtualPath));
-            //var filesToImport = Directory.GetFiles(path);
+            var properties = FilesProperties.Where(kp => kp.Value.FilePath is not null 
+            && kp.Value.FilePath.Contains(virtualPath)).ToList();
 
-            //foreach (var prop in properties)
-            //{
+            var filesToImport = Directory.GetFiles(path);
 
-            //}
+            foreach (var filePath in filesToImport)
+            {
+                string justPath = "main" + filePath.Split(new string[]{"main"}, StringSplitOptions.RemoveEmptyEntries)[1];
+                ImportFile(justPath, FilesProperties[justPath]);
+            }
 
-            //string? filePath = fileProperties.FilePath;
-            //ArgumentNullException.ThrowIfNull(filePath);
-            //string? directory = Path.GetDirectoryName(filePath);
-
-            //if (!Directory.Exists($"_temp\\{directory}"))
-            //{
-            //    Directory.CreateDirectory($"_temp\\{directory}");
-            //}
-
-
-            //FileInfo fileF = new(filePath);
-            //File.Copy(path, $"_temp\\{fileF.FullName}", true);
-
-            //fileProperties.WasModified = true;
-            //fileProperties.ContentJamCrc32 = (int)JamCrcCalculator.GetJamCrc32FromFile(fileF);
-            //fileProperties.Size = (int)fileF.Length;
         }
 
         public IEnumerable<int> SaveObbArchive()

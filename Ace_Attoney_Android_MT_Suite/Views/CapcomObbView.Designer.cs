@@ -41,6 +41,8 @@
             this.SaveIconButton = new System.Windows.Forms.Label();
             this.CmsMultipleImport = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CmsOptionImportMultiple = new System.Windows.Forms.ToolStripMenuItem();
+            this.LBReplacedFiles = new System.Windows.Forms.ListBox();
+            this.LbReplaced = new System.Windows.Forms.Label();
             this.MenuCapcomObb.SuspendLayout();
             this.CmsObbOptions.SuspendLayout();
             this.CmsMultipleImport.SuspendLayout();
@@ -52,7 +54,7 @@
             this.openMainobbToolStripMenuItem});
             this.MenuCapcomObb.Location = new System.Drawing.Point(0, 0);
             this.MenuCapcomObb.Name = "MenuCapcomObb";
-            this.MenuCapcomObb.Size = new System.Drawing.Size(535, 24);
+            this.MenuCapcomObb.Size = new System.Drawing.Size(794, 24);
             this.MenuCapcomObb.TabIndex = 0;
             this.MenuCapcomObb.Text = "menuStrip1";
             // 
@@ -134,27 +136,47 @@
             this.CmsMultipleImport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CmsOptionImportMultiple});
             this.CmsMultipleImport.Name = "CmsMultipleImport";
-            this.CmsMultipleImport.Size = new System.Drawing.Size(181, 48);
+            this.CmsMultipleImport.Size = new System.Drawing.Size(168, 26);
             // 
             // CmsOptionImportMultiple
             // 
             this.CmsOptionImportMultiple.Name = "CmsOptionImportMultiple";
-            this.CmsOptionImportMultiple.Size = new System.Drawing.Size(180, 22);
+            this.CmsOptionImportMultiple.Size = new System.Drawing.Size(167, 22);
             this.CmsOptionImportMultiple.Text = "Importar de pasta";
             this.CmsOptionImportMultiple.Click += new System.EventHandler(this.CmsOptionImportMultipleClick);
+            // 
+            // LBReplacedFiles
+            // 
+            this.LBReplacedFiles.FormattingEnabled = true;
+            this.LBReplacedFiles.ItemHeight = 15;
+            this.LBReplacedFiles.Location = new System.Drawing.Point(515, 49);
+            this.LBReplacedFiles.Name = "LBReplacedFiles";
+            this.LBReplacedFiles.Size = new System.Drawing.Size(267, 574);
+            this.LBReplacedFiles.TabIndex = 4;
+            // 
+            // LbReplaced
+            // 
+            this.LbReplaced.AutoSize = true;
+            this.LbReplaced.Location = new System.Drawing.Point(577, 31);
+            this.LbReplaced.Name = "LbReplaced";
+            this.LbReplaced.Size = new System.Drawing.Size(121, 15);
+            this.LbReplaced.TabIndex = 5;
+            this.LbReplaced.Text = "Arquivos substítuidos";
             // 
             // CapcomObbView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 681);
+            this.ClientSize = new System.Drawing.Size(794, 681);
+            this.Controls.Add(this.LbReplaced);
+            this.Controls.Add(this.LBReplacedFiles);
             this.Controls.Add(this.SaveIconButton);
             this.Controls.Add(this.TbxStatus);
             this.Controls.Add(this.TVObbArchive);
             this.Controls.Add(this.MenuCapcomObb);
             this.MainMenuStrip = this.MenuCapcomObb;
             this.Name = "CapcomObbView";
-            this.Text = "CapcomObbView";
+            this.Text = "Obb principal";
             this.MenuCapcomObb.ResumeLayout(false);
             this.MenuCapcomObb.PerformLayout();
             this.CmsObbOptions.ResumeLayout(false);
@@ -178,5 +200,7 @@
         private ToolStripMenuItem CloseObbMenuItem;
         private ContextMenuStrip CmsMultipleImport;
         private ToolStripMenuItem CmsOptionImportMultiple;
+        private ListBox LBReplacedFiles;
+        private Label LbReplaced;
     }
 }

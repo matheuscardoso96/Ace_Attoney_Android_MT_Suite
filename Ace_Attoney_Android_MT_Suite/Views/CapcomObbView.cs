@@ -84,9 +84,22 @@ namespace Ace_Attoney_Android_MT_Suite.Views
             }
         }
 
-        private void CmsOptionImportMultipleClick(object sender, EventArgs e)
+        private async void CmsOptionImportMultipleClick(object sender, EventArgs e)
         {
+            ArgumentNullException.ThrowIfNull(_obbArchive);
+            ArgumentNullException.ThrowIfNull(_selectedNode);
 
+            using FolderBrowserDialog dialog = new();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                await ImportMultipleFilesToObb(dialog.SelectedPath, _selectedNode);
+                SaveIconButton.Enabled = true;
+                CloseObbMenuItem.Enabled = false;
+                MessageBox.Show("Arquivos substituídos.");
+                CloseObbMenuItem.Enabled = true;
+            }
+
+            
         }
 
         private async void SaveIconClick(object sender, EventArgs e)
@@ -95,6 +108,8 @@ namespace Ace_Attoney_Android_MT_Suite.Views
             CloseObbMenuItem.Enabled = false;
             Progress<string>? progress = new(fp => TbxStatus.Text = fp);
             await SaveNewObb(progress);
+            LBReplacedFiles.DataSource = null;
+            LBReplacedFiles.Refresh();
             MessageBox.Show("Salvo com sucesso");
             CloseObbMenuItem.Enabled = true;
 
@@ -155,7 +170,10 @@ namespace Ace_Attoney_Android_MT_Suite.Views
         private async Task ImportMultipleFilesToObb(string path, TreeNode selectedNode)
         {
             ArgumentNullException.ThrowIfNull(_obbArchive);
-            await Task.Run(() => _obbArchive.ImportFile(path, _obbArchive.FilesProperties[selectedNode.FullPath]));
+            await Task.Run(() => _obbArchive.ImportMultipleFiles(path, selectedNode.FullPath));
+            LBReplacedFiles.DataSource = _obbArchive.FilesProperties
+                .Where(f => f.Value.WasModified)
+                .Select(f => Path.GetFileName(f.Value.FilePath)).ToList();
         }
 
         private async Task SaveNewObb(IProgress<string> progress)
