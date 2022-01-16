@@ -10,7 +10,6 @@
     <Folder Include="Arc\" />
     <Folder Include="Gui\" />
     <Folder Include="Gmd\" />
-    <Folder Include="Apk\" />
     <Folder Include="Sew\" />
     <Folder Include="Sngw\" />
     <Folder Include="Tex\" />

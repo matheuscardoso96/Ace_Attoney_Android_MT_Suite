@@ -7,15 +7,22 @@ namespace MTTools.Apk
         private const string _apkExportPath = "APK\\Exported\\";
         private const string _newApkPath = "APK\\New\\";
         private const string _fileNotFoundMsg = "Arquivo .apk não encontrado.";
-        private const string _directoryEmptyError = "Arquivo .apk não encontrado.";
-        private static readonly string _apkToolPath = $"{Environment.CurrentDirectory}Tools\\apktool.jar ";
+        private const string _directoryEmptyError = "O diretorio selecionado está vazio.";
+        private const string _apkDecompileError = "Erro ao decompilar apk, verifique se o java está instalado.";
+        private static readonly string _apkToolPath = $"{Environment.CurrentDirectory}\\Tools\\apktool.jar";
 
-        public static void DecompileApk(string apkPath, string destPath) 
+        public static void DecompileApk(string apkPath, string gameName) 
         {
             if (!File.Exists(apkPath))
                 throw new FileNotFoundException(_fileNotFoundMsg);
 
-            CommandExecute(CreateDecompileCommand(apkPath, destPath));
+            if (!Directory.Exists(_apkExportPath))
+                Directory.CreateDirectory(_apkExportPath);
+
+            CommandExecute(CreateDecompileCommand(apkPath, $"{_apkExportPath}{gameName}"));
+            
+            if (!Directory.Exists($"{_apkExportPath}{gameName}"))
+                throw new DirectoryNotFoundException(_apkDecompileError);
         }
 
         public static void CompileApk(string apkExportedPath, string apkName)
@@ -33,18 +40,18 @@ namespace MTTools.Apk
 
         private static string CreateDecompileCommand(string apkPath, string destPath) 
         {
-            return $"java -jar {_apkToolPath} -f d \"{apkPath}\" -o \"{_apkExportPath}{destPath}\"";
+            return $"-jar \"{_apkToolPath}\" -f d \"{apkPath}\" -o \"{destPath}\"";
         }
 
         private static string CreateCompileCommmand(string apkExportedPath, string apkName) 
         {
-            return $"apktool b {_apkToolPath} -o {_newApkPath}{apkName}.apk";
+            return $"-jar \"{_apkToolPath}\" b {apkExportedPath} -o {_newApkPath}{apkName}.apk";
         }
 
         private static void CommandExecute(string command)
         {
             Process process = new();
-            ProcessStartInfo processInfo = new("cmd.exe", command);
+            ProcessStartInfo processInfo = new("java.exe", command);
             process.StartInfo = processInfo;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;

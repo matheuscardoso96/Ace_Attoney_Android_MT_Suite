@@ -20,5 +20,11 @@ namespace AceAttoney.Android.MTSuite.GUI
             ZipObb zipObb = new();
             zipObb.ShowDialog();
         }
+
+        private void MSIToolApkClick(object sender, EventArgs e)
+        {
+            ApkView apkView = new();
+            apkView.ShowDialog();
+        }
     }
 }

@@ -30,8 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.obbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenCapcomObbToolMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenMovieObbOMS = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSICapcomObbTool = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSIMovieObb = new System.Windows.Forms.ToolStripMenuItem();
+            this.MSIToolApk = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,25 +49,33 @@
             // obbToolStripMenuItem
             // 
             this.obbToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenCapcomObbToolMenu,
-            this.OpenMovieObbOMS});
+            this.MSICapcomObbTool,
+            this.MSIMovieObb,
+            this.MSIToolApk});
             this.obbToolStripMenuItem.Name = "obbToolStripMenuItem";
             this.obbToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.obbToolStripMenuItem.Text = "Obb";
             // 
-            // OpenCapcomObbToolMenu
+            // MSICapcomObbTool
             // 
-            this.OpenCapcomObbToolMenu.Name = "OpenCapcomObbToolMenu";
-            this.OpenCapcomObbToolMenu.Size = new System.Drawing.Size(184, 22);
-            this.OpenCapcomObbToolMenu.Text = "Tool de main obb";
-            this.OpenCapcomObbToolMenu.Click += new System.EventHandler(this.OpenCapcomObbTool);
+            this.MSICapcomObbTool.Name = "MSICapcomObbTool";
+            this.MSICapcomObbTool.Size = new System.Drawing.Size(184, 22);
+            this.MSICapcomObbTool.Text = "Tool de main obb";
+            this.MSICapcomObbTool.Click += new System.EventHandler(this.OpenCapcomObbTool);
             // 
-            // OpenMovieObbOMS
+            // MSIMovieObb
             // 
-            this.OpenMovieObbOMS.Name = "OpenMovieObbOMS";
-            this.OpenMovieObbOMS.Size = new System.Drawing.Size(184, 22);
-            this.OpenMovieObbOMS.Text = "Tool de obb de vídeo";
-            this.OpenMovieObbOMS.Click += new System.EventHandler(this.OpenMovieObbToolClick);
+            this.MSIMovieObb.Name = "MSIMovieObb";
+            this.MSIMovieObb.Size = new System.Drawing.Size(184, 22);
+            this.MSIMovieObb.Text = "Tool de obb de vídeo";
+            this.MSIMovieObb.Click += new System.EventHandler(this.OpenMovieObbToolClick);
+            // 
+            // MSIToolApk
+            // 
+            this.MSIToolApk.Name = "MSIToolApk";
+            this.MSIToolApk.Size = new System.Drawing.Size(184, 22);
+            this.MSIToolApk.Text = "Tool de apk";
+            this.MSIToolApk.Click += new System.EventHandler(this.MSIToolApkClick);
             // 
             // Main
             // 
@@ -88,7 +97,8 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem obbToolStripMenuItem;
-        private ToolStripMenuItem OpenCapcomObbToolMenu;
-        private ToolStripMenuItem OpenMovieObbOMS;
+        private ToolStripMenuItem MSICapcomObbTool;
+        private ToolStripMenuItem MSIMovieObb;
+        private ToolStripMenuItem MSIToolApk;
     }
 }
