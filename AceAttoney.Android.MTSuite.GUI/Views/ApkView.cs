@@ -20,7 +20,7 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
             {
                 SetEnableStatus(false);
                 TbxStatus.Text = "Exportando apk...";
-                await SelectAGame(openFileDialog.FileName);
+                await Task.Run(() => DecompileApk(openFileDialog.FileName, SelectAGame()));
                 SetEnableStatus(true);
                 TbxStatus.Text = "Apk exportado com sucesso.";
             }
@@ -56,18 +56,31 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
             }
         }
 
-        private void TMSIMovieObbSizeFixClick(object sender, EventArgs e)
+        private async void TMSIMovieObbSizeFixClick(object sender, EventArgs e)
         {
-            
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "path obb file|*.obb";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SetEnableStatus(false);
+                string? gameName = LBDecApks.SelectedItem.ToString();
+                ArgumentNullException.ThrowIfNull(gameName);
+                await Task.Run(() => MovieObbSizeFix.FixSize(gameName, openFileDialog.FileName));
+                SetEnableStatus(true);
+                TbxStatus.Text = "Tamanho corrigido!";
+            }
         }
 
-        private static async Task SelectAGame(string apkPath) 
+        private static string SelectAGame() 
         {
             using SelectGameView selectGame = new();
             if (selectGame.ShowDialog() == DialogResult.Cancel)
             {
-              await Task.Run(() => DecompileApk(apkPath, selectGame.GameNameAbbreviation));
+              return selectGame.GameNameAbbreviation;
             }
+
+            return "AA5";
         }
 
         private static void DecompileApk(string apkPath, string? gameName) 

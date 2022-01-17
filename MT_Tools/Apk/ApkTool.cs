@@ -58,8 +58,8 @@ namespace MTTools.Apk
             SignApk(apkNewPath);
             ZipAlignApk(apkNewPath, apkNewPath.Replace(".apk","_signed.apk"));
             
-            File.Delete($"{_newApkPath}{apkName}.apk");
-            File.Move(apkNewPath.Replace(".apk", "_signed.apk"), $"{_newApkPath}{apkName}.apk");        
+            File.Delete(apkNewPath);
+            File.Move(apkNewPath.Replace(".apk", "_signed.apk"), $"{_newApkPath}{apkName}_{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.apk");        
         }
 
         private static void SignApk(string apkPath) 

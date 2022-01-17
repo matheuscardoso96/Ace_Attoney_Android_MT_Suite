@@ -35,6 +35,7 @@
             // 
             // CBGames
             // 
+            this.CBGames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBGames.FormattingEnabled = true;
             this.CBGames.Location = new System.Drawing.Point(12, 39);
             this.CBGames.Name = "CBGames";
