@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\key.keystore" />
+    <None Include="bin\Debug\net6.0-windows\Tools\apktool.jar" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MT_Tools\MTTools.csproj" />
   </ItemGroup>
 

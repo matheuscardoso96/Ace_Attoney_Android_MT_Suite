@@ -1,13 +1,5 @@
 ﻿using MTTools.Apk;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AceAttoney.Android.MTSuite.GUI.Views
 {
@@ -16,6 +8,7 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
         public ApkView()
         {
             InitializeComponent();
+            GetDecompiledApks();
         }
 
         private async void TMSIDecompApkClick(object sender, EventArgs e)
@@ -25,20 +18,85 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                TMSICompApk.Enabled = false;
-                TMSIDecompApk.Enabled = false;
+                SetEnableStatus(false);
                 TbxStatus.Text = "Exportando apk...";
-                await Task.Run(() => DecompApk(openFileDialog.FileName,"dgs1"));
-                TMSICompApk.Enabled = true;
-                TMSIDecompApk.Enabled = true;
+                await SelectAGame(openFileDialog.FileName);
+                SetEnableStatus(true);
                 TbxStatus.Text = "Apk exportado com sucesso.";
             }
 
+            GetDecompiledApks();
         }
 
-        private static void DecompApk(string apkPath, string gameName) 
+        private async void TMSICompileApkClick(object sender, EventArgs e)
         {
+            if (LBDecApks.SelectedItem is not null) 
+            {
+                SetEnableStatus(false);
+                var apkName = LBDecApks.SelectedItem.ToString();
+                TbxStatus.Text = $"Compilando {apkName}...";
+                await Task.Run(() => CompileApk(_apkExportPath, apkName));
+                SetEnableStatus(true);
+                MessageBox.Show($"{apkName} compilado com sucesso!");
+                TbxStatus.Text = "";
+            }
+                
+
+        }
+
+        private void LBDecApks_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (LBDecApks.SelectedIndex != -1)
+                {
+                    CMSCompile.Show(Cursor.Position);
+                }
+
+            }
+        }
+
+        private void TMSIMovieObbSizeFixClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private static async Task SelectAGame(string apkPath) 
+        {
+            using SelectGameView selectGame = new();
+            if (selectGame.ShowDialog() == DialogResult.Cancel)
+            {
+              await Task.Run(() => DecompileApk(apkPath, selectGame.GameNameAbbreviation));
+            }
+        }
+
+        private static void DecompileApk(string apkPath, string? gameName) 
+        {
+            ArgumentNullException.ThrowIfNull(gameName);
             ApkTool.DecompileApk(apkPath, gameName);
         }
+
+        public static void CompileApk(string apkExportedPath, string? apkName) 
+        {
+            ArgumentNullException.ThrowIfNull(apkName);
+            ApkTool.CompileApk($"{apkExportedPath}{apkName}", $"{apkName}");
+        }
+
+        private void SetEnableStatus(bool isEnable) 
+        {
+            TMSICompApk.Enabled = isEnable;
+            TMSIDecompApk.Enabled = isEnable;
+        }
+
+        private const string _apkExportPath = "APK\\Exported\\";
+
+        private void GetDecompiledApks() 
+        {
+            LBDecApks.Items.Clear();
+            var paths = Directory.GetDirectories(_apkExportPath).Select(d => d.Split('\\').Last()).ToList();
+            paths.ForEach(x => LBDecApks.Items.Add(x));
+            LBDecApks.Refresh();
+        }
+
     }
 }
