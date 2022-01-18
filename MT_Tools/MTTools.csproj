@@ -13,7 +13,6 @@
     <Folder Include="Sew\" />
     <Folder Include="Sngw\" />
     <Folder Include="Tex\" />
-    <Folder Include="Obb\GenericObb\" />
   </ItemGroup>
 
   <ItemGroup>

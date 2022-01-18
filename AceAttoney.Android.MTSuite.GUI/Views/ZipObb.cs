@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using MTTools.Obb.GenericObb;
 
 namespace AceAttoney.Android.MTSuite.GUI.Views
 {
@@ -29,8 +20,8 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
             if (opf.ShowDialog() == DialogResult.OK)
             {
                 EnableOrDisableButtons(false);
-                if (IsValidZip(opf.FileName)) {
-                    await Task.Run(() => UnzipObbAchive(opf.FileName));
+                if (GenericObbTool.IsValidZip(opf.FileName)) {
+                    await Task.Run(() => GenericObbTool.UnzipObbAchive(opf.FileName));
                     MessageBox.Show(_unzipSuccessMsg);
                 }
                 else
@@ -46,33 +37,12 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 EnableOrDisableButtons(false);
-                await Task.Run(() => ZipObbArchive(dialog.SelectedPath));
+                await Task.Run(() => GenericObbTool.ZipObbArchive(dialog.SelectedPath));
                 EnableOrDisableButtons(true);
                 MessageBox.Show($"{_zipSucessMsg}");
             }
         }
 
-        private static void UnzipObbAchive(string dir) 
-        {
-            ZipFile.ExtractToDirectory(dir, Path.GetFileNameWithoutExtension(dir), overwriteFiles:true);
-        }
-
-        private static void ZipObbArchive(string path) 
-        {
-            if (File.Exists($"{path}.obb"))
-                File.Delete($"{path}.obb");
-
-            ZipFile.CreateFromDirectory(
-                path, $"{path}.obb",
-                CompressionLevel.NoCompression, 
-                includeBaseDirectory:!path.Split("\\").Last().Contains('.'));
-        }
-
-        private static bool IsValidZip(string dir) 
-        {
-            using BinaryReader reader = new(File.OpenRead(dir));
-            return reader.ReadInt16() == 0x4B50;
-        }
 
         private void EnableOrDisableButtons(bool isEnabled) 
         {
