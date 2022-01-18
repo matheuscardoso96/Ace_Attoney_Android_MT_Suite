@@ -41,6 +41,7 @@
             this.SaveIconButton = new System.Windows.Forms.Label();
             this.CmsMultipleImport = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CmsOptionImportMultiple = new System.Windows.Forms.ToolStripMenuItem();
+            this.CmsOptionExportObb = new System.Windows.Forms.ToolStripMenuItem();
             this.LBReplacedFiles = new System.Windows.Forms.ListBox();
             this.LbReplaced = new System.Windows.Forms.Label();
             this.MenuCapcomObb.SuspendLayout();
@@ -70,14 +71,14 @@
             // OpenObbMenuItem
             // 
             this.OpenObbMenuItem.Name = "OpenObbMenuItem";
-            this.OpenObbMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenObbMenuItem.Size = new System.Drawing.Size(103, 22);
             this.OpenObbMenuItem.Text = "Open";
             this.OpenObbMenuItem.Click += new System.EventHandler(this.OpenObbClick);
             // 
             // CloseObbMenuItem
             // 
             this.CloseObbMenuItem.Name = "CloseObbMenuItem";
-            this.CloseObbMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CloseObbMenuItem.Size = new System.Drawing.Size(103, 22);
             this.CloseObbMenuItem.Text = "Close";
             this.CloseObbMenuItem.Click += new System.EventHandler(this.CloseObbClick);
             // 
@@ -134,16 +135,24 @@
             // CmsMultipleImport
             // 
             this.CmsMultipleImport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CmsOptionExportObb,
             this.CmsOptionImportMultiple});
             this.CmsMultipleImport.Name = "CmsMultipleImport";
-            this.CmsMultipleImport.Size = new System.Drawing.Size(168, 26);
+            this.CmsMultipleImport.Size = new System.Drawing.Size(181, 70);
             // 
             // CmsOptionImportMultiple
             // 
             this.CmsOptionImportMultiple.Name = "CmsOptionImportMultiple";
-            this.CmsOptionImportMultiple.Size = new System.Drawing.Size(167, 22);
+            this.CmsOptionImportMultiple.Size = new System.Drawing.Size(180, 22);
             this.CmsOptionImportMultiple.Text = "Importar de pasta";
             this.CmsOptionImportMultiple.Click += new System.EventHandler(this.CmsOptionImportMultipleClick);
+            // 
+            // CmsOptionExportObb
+            // 
+            this.CmsOptionExportObb.Name = "CmsOptionExportObb";
+            this.CmsOptionExportObb.Size = new System.Drawing.Size(180, 22);
+            this.CmsOptionExportObb.Text = "Exportar para pasta";
+            this.CmsOptionExportObb.Click += new System.EventHandler(this.CmsOptionExportAllObbFilesClick);
             // 
             // LBReplacedFiles
             // 
@@ -202,5 +211,6 @@
         private ToolStripMenuItem CmsOptionImportMultiple;
         private ListBox LBReplacedFiles;
         private Label LbReplaced;
+        private ToolStripMenuItem CmsOptionExportObb;
     }
 }

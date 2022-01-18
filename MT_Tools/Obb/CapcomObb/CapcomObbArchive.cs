@@ -56,18 +56,18 @@ namespace MTTools.Obb.CapcomObb
 
 
         public void ExportFile(CapcomObbFileProperties fileProperty)
-        {
-            _reader.BaseStream.Position = fileProperty.Offset;
+        {         
             string? directory = Path.GetDirectoryName(fileProperty.FilePath);
-
             ArgumentNullException.ThrowIfNull(directory);
-            if (Directory.Exists(directory))
-            {
-                _ = Directory.CreateDirectory(directory);
-            }
-
+            
+            _ = Directory.CreateDirectory(directory);       
             ArgumentNullException.ThrowIfNull(fileProperty.FilePath);
-            File.WriteAllBytes(fileProperty.FilePath, _reader.ReadBytes(fileProperty.Size));
+
+            using BinaryWriter writer = new(File.Open(fileProperty.FilePath, FileMode.Create));
+            foreach (var bytes in YieldReadFromInternalFile(_reader, fileProperty.Size, fileProperty.Offset))
+                writer.Write(bytes);
+
+            writer.Close();
         }
 
         public IEnumerable<CapcomObbFileProperties> ExportAllFiles(string parant)

@@ -60,6 +60,16 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
 
         private async void CmsObbOptionExport(object sender, EventArgs e)
         {
+            await Export();
+        }
+
+        private async void CmsOptionExportAllObbFilesClick(object sender, EventArgs e)
+        {
+            await Export();
+        }
+
+        private async Task Export() 
+        {
             Progress<CapcomObbFileProperties>? progress = new(fp => TbxStatus.Text = fp.FilePath);
             await ExportFileFromObb(progress);
 
@@ -156,7 +166,9 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
             ArgumentNullException.ThrowIfNull(_obbArchive);
             ArgumentNullException.ThrowIfNull(_selectedNode);
 
-            if (_selectedNode.FullPath.Split("\\").Last().Contains('.'))
+            string nodePath = _selectedNode.FullPath.Split("\\").Last();
+
+            if (nodePath.Contains('.') && _selectedNode.Level > 0)
                 await Task.Run(() => _obbArchive.ExportFile(_obbArchive.FilesProperties[_selectedNode.FullPath]));
             else
                 await Task.Run(() => { foreach (var fp in _obbArchive.ExportAllFiles(_selectedNode.FullPath)) progress.Report(fp); });
@@ -194,6 +206,6 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
 
         }
 
- 
+        
     }
 }
