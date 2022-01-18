@@ -97,7 +97,6 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
 
         private void SetEnableStatus(bool isEnable) 
         {
-            TMSICompApk.Enabled = isEnable;
             TMSIDecompApk.Enabled = isEnable;
         }
 
