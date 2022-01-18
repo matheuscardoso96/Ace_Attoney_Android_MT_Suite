@@ -32,7 +32,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.decompilarApkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TMSIDecompApk = new System.Windows.Forms.ToolStripMenuItem();
-            this.TMSICompApk = new System.Windows.Forms.ToolStripMenuItem();
             this.TbxStatus = new System.Windows.Forms.TextBox();
             this.LBDecApks = new System.Windows.Forms.ListBox();
             this.CMSCompile = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -55,24 +54,17 @@
             // decompilarApkToolStripMenuItem
             // 
             this.decompilarApkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TMSIDecompApk,
-            this.TMSICompApk});
+            this.TMSIDecompApk});
             this.decompilarApkToolStripMenuItem.Name = "decompilarApkToolStripMenuItem";
-            this.decompilarApkToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.decompilarApkToolStripMenuItem.Text = "Apk";
+            this.decompilarApkToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.decompilarApkToolStripMenuItem.Text = "Opções";
             // 
             // TMSIDecompApk
             // 
             this.TMSIDecompApk.Name = "TMSIDecompApk";
-            this.TMSIDecompApk.Size = new System.Drawing.Size(157, 22);
+            this.TMSIDecompApk.Size = new System.Drawing.Size(180, 22);
             this.TMSIDecompApk.Text = "Decompilar apk";
             this.TMSIDecompApk.Click += new System.EventHandler(this.TMSIDecompApkClick);
-            // 
-            // TMSICompApk
-            // 
-            this.TMSICompApk.Name = "TMSICompApk";
-            this.TMSICompApk.Size = new System.Drawing.Size(157, 22);
-            this.TMSICompApk.Text = "Compilar apk";
             // 
             // TbxStatus
             // 
@@ -99,7 +91,7 @@
             this.TMSICompileApk,
             this.TMSIMovieObbSizeFix});
             this.CMSCompile.Name = "CMSCompile";
-            this.CMSCompile.Size = new System.Drawing.Size(213, 70);
+            this.CMSCompile.Size = new System.Drawing.Size(213, 48);
             // 
             // TMSICompileApk
             // 
@@ -125,7 +117,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ApkView";
-            this.Text = "ApkView";
+            this.Text = "Apk";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.CMSCompile.ResumeLayout(false);
@@ -138,7 +130,6 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem decompilarApkToolStripMenuItem;
-        private ToolStripMenuItem TMSICompApk;
         private ToolStripMenuItem TMSIDecompApk;
         private TextBox TbxStatus;
         private ListBox LBDecApks;
