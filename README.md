@@ -5,7 +5,7 @@ A tool to help edit MT Framework Android Ace Attorney Games
 
 - [X] Capcom Obb
 - [X] Movie Generic Obb
-- [ ] APK
+- [X] APK
 - [ ] Arc
 - [ ] Gmd
 - [ ] Tex
