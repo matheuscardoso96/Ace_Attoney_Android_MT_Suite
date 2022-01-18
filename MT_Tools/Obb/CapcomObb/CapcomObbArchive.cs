@@ -2,7 +2,6 @@
 using BinaryUtils.Extensions.Writer;
 using MTTols.Utils;
 using MTTools.Obb.CapcomObb.FileMap;
-using System.IO;
 using System.Text;
 
 namespace MTTools.Obb.CapcomObb
