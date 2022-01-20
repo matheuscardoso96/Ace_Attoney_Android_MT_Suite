@@ -102,6 +102,12 @@ public class DualDestiniesEN : FileMapBase
             @"archive\chr225_eng.arc",
             @"archive\chr300_eng.arc",
             @"archive\chr308_eng.arc",
+            @"archive\chr600_eng.arc",
+            @"archive\chr601_eng.arc",
+            @"archive\chr602_eng.arc",
+            @"archive\chr603_eng.arc",
+            @"archive\chr605_eng.arc",
+            @"archive\chr700_eng.arc",
             @"archive\credit_eng.arc",
             @"archive\efc001_eng.arc",
             @"archive\efc003_eng.arc",
@@ -160,6 +166,8 @@ public class DualDestiniesEN : FileMapBase
             @"archive\msg_cmn_eng.arc",
             @"archive\psycho_eng.arc",
             @"archive\sce00_eng.arc",
+            @"archive\sce05_eng.arc",
+            @"archive\sceset_eng.arc",
             @"archive\snd_court_eng.arc",
             @"archive\snd_script_1_eng.arc",
             @"archive\snd_script_2_eng.arc",
@@ -341,6 +349,7 @@ public class DualDestiniesEN : FileMapBase
             @"obj\etc\etc004\model\etc004_jpn.mod",
             @"obj\etc\etc004\model\etc004_jpn.mrl",
             @"obj\etc\etc004\motion\etc004_jpn.lmt",
+            @"obj\etc\etc102\model\etc102_pantsu_BM_HQ_NOMIP.tex",
             @"scene\demo\demo000.sdl",
             @"scene\demo\demo001.sdl",
             @"scene\demo\demo002.sdl",
@@ -846,7 +855,7 @@ public class DualDestiniesEN : FileMapBase
             @"UI\3_mg\36_sce3event\tex\sce3_board01_eng_BM_NOMIP.tex",
             @"UI\4_menu\40_title\and_title_window.gui",
             @"UI\4_menu\40_title\tex\and_data_NOMIP.tex",
-            @"UI\4_menu\40_title\tex\and_title_logo_eng_NOMIP.tex",
+            @"UI\4_menu\40_title\tex\ios_title_logo_eng_NOMIP.tex",
             @"UI\4_menu\40_title\tex\ios_title_wallpaper01_BM_NOMIP.tex",
             @"UI\4_menu\40_title\tex\ios_title_wallpaper02_eng_BM_NOMIP.tex",
             @"UI\4_menu\40_title\tex\ios_title_wallpaper03_eng_BM_NOMIP.tex",
@@ -865,6 +874,7 @@ public class DualDestiniesEN : FileMapBase
             @"UI\6_i\63_manual\tex\ios_manual07_eng_NOMIP.tex",
             @"UI\test\ui_parallax.gui",
             @"UI\test\tex\parallax_NOMIP.tex",
+            @"UI\4_menu\43_extra\tex\ios_addon_panel_eng_NOMIP.tex"
    };
 }
 
