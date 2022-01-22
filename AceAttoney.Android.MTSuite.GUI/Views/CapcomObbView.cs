@@ -8,12 +8,14 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
     {
         private CapcomObbArchive? _obbArchive;
         private TreeNode? _selectedNode;
+        private string _workdirectory;
 
-        public CapcomObbView()
+        public CapcomObbView(string workdDirectory)
         {
             InitializeComponent();
             SaveIconButton.Enabled = false;
             CloseObbMenuItem.Enabled = false;
+            _workdirectory = workdDirectory;
         }
 
         private async void OpenObbClick(object sender, EventArgs e)
@@ -146,7 +148,7 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
 
         private void LoadObb(string path)
         {
-            _obbArchive = new CapcomObbArchive(path, FileMapIdentifier.GetFilemap(path));
+            _obbArchive = new CapcomObbArchive(path, FileMapIdentifier.GetFilemap(path),_workdirectory);
             _obbArchive.ReadObb();
         }
 

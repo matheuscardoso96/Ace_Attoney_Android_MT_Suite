@@ -73,16 +73,6 @@ namespace AceAttoney.Android.MTSuite.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] jarsigner {
-            get {
-                object obj = ResourceManager.GetObject("jarsigner", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] key {
             get {
                 object obj = ResourceManager.GetObject("key", resourceCulture);
@@ -97,6 +87,16 @@ namespace AceAttoney.Android.MTSuite.GUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("SaveIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ubersigner {
+            get {
+                object obj = ResourceManager.GetObject("ubersigner", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

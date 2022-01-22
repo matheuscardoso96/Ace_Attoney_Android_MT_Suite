@@ -10,22 +10,22 @@ namespace MTTools.Obb.CapcomObb
     {
         public FileInfo ObbInfo { get; private set; }
         public string ExportPath { get; private set; }
+        public string ExportTempPath { get; private set; }
+        public string WorkDirectory { get; private set; }
         public CapcomObbHeader? Header { get; private set; }
-        public Dictionary<string, CapcomObbFileProperties> FilesProperties { get; private set; }
-        private BinaryReader _reader;
+        public Dictionary<string, CapcomObbFileProperties> FilesProperties { get; private set; } = new ();
+        private BinaryReader _reader = new(new MemoryStream());
         private readonly FileMapBase _fileMap;
 
-        public CapcomObbArchive(string path, FileMapBase fileMap)
+        public CapcomObbArchive(string path, FileMapBase fileMap,string workDirectory)
         {
+            WorkDirectory = workDirectory;
             ObbInfo = new FileInfo(path);
-            ExportPath = Path.GetFileNameWithoutExtension(path);
+            ExportPath = $"{workDirectory}\\obbs_principais\\";
+            ExportTempPath = $"{workDirectory}\\_temp\\";
             _fileMap = fileMap;
-            FilesProperties = new Dictionary<string, CapcomObbFileProperties>();
-            _reader = new BinaryReader(new MemoryStream());
-            if (!Directory.Exists($"_temp\\{Path.GetFileNameWithoutExtension(ObbInfo.Name)}"))
-            {
-                Directory.CreateDirectory($"_temp\\{Path.GetFileNameWithoutExtension(ObbInfo.Name)}");
-            }
+            _ = Directory.CreateDirectory(ExportTempPath);
+            
         }
 
         public void ReadObb()
@@ -38,10 +38,11 @@ namespace MTTools.Obb.CapcomObb
         private Dictionary<string, CapcomObbFileProperties> ReadObbFilePropertiesAsync()
         {
             var list = new Dictionary<string, CapcomObbFileProperties>();
+            var obbName = Path.GetFileNameWithoutExtension(ObbInfo.FullName);
             for (int count = 0; count < Header?.FileCount; count++)
             {
                 var fp = _reader.ReadPrimitiveProps<CapcomObbFileProperties>();
-                string path = $"{ExportPath}\\{_fileMap.GetFileName(fp.PathJamCrc32)}";
+                string path = $"{obbName}\\{_fileMap.GetFileName(fp.PathJamCrc32)}";
 
                 if (path.Contains("_notInTheList"))
                     path += GetExtension(_reader, fp.Offset);
@@ -57,13 +58,14 @@ namespace MTTools.Obb.CapcomObb
 
         public void ExportFile(CapcomObbFileProperties fileProperty)
         {         
-            string? directory = Path.GetDirectoryName(fileProperty.FilePath);
+            string? finalPath = $"{ExportPath}{fileProperty.FilePath}";
+            string? directory = Path.GetDirectoryName(finalPath);
             ArgumentNullException.ThrowIfNull(directory);
             
             _ = Directory.CreateDirectory(directory);       
             ArgumentNullException.ThrowIfNull(fileProperty.FilePath);
 
-            using BinaryWriter writer = new(File.Open(fileProperty.FilePath, FileMode.Create));
+            using BinaryWriter writer = new(File.Open(finalPath, FileMode.Create));
             foreach (var bytes in YieldReadFromInternalFile(_reader, fileProperty.Size, fileProperty.Offset))
                 writer.Write(bytes);
 
@@ -88,16 +90,11 @@ namespace MTTools.Obb.CapcomObb
             string? filePath = fileProperties.FilePath;
             ArgumentNullException.ThrowIfNull(filePath);
             string? directory = Path.GetDirectoryName(filePath);
+             _ = Directory.CreateDirectory($"{ExportTempPath}{directory}");
+                    
+            File.Copy(path, $"{ExportTempPath}{filePath}", true);
+            FileInfo fileF = new($"{ExportTempPath}{filePath}");
 
-            if (!Directory.Exists($"_temp\\{directory}"))
-            {
-                Directory.CreateDirectory($"_temp\\{directory}");
-            }
-
-            
-            FileInfo fileF = new (filePath);
-            File.Copy(path, $"_temp\\{filePath}", true);
-            
             fileProperties.WasModified = true;
             fileProperties.ContentJamCrc32 = (int)JamCrcCalculator.GetJamCrc32FromFile(fileF);
             fileProperties.Size = (int)fileF.Length;
@@ -113,7 +110,7 @@ namespace MTTools.Obb.CapcomObb
             foreach (var filePath in filesToImport)
             {
                 string justPath = "main" + filePath.Split(new string[]{"main"}, StringSplitOptions.RemoveEmptyEntries)[1];
-                ImportFile(justPath, FilesProperties[justPath]);
+                ImportFile(filePath, FilesProperties[justPath]);
             }
 
         }
@@ -121,7 +118,7 @@ namespace MTTools.Obb.CapcomObb
         public IEnumerable<int> SaveObbArchive()
         {
             string obbName = Path.GetFileNameWithoutExtension(ObbInfo.FullName);
-            using (BinaryWriter writer = new(File.Open($"{obbName}_new.obb", FileMode.Create)))
+            using (BinaryWriter writer = new(File.Open($"{WorkDirectory}\\{obbName}_new.obb", FileMode.Create)))
             {
                 int endOfEntryArea = FilesProperties.Count * 16 + 16;
                 writer.BaseStream.Position = endOfEntryArea;
@@ -133,7 +130,7 @@ namespace MTTools.Obb.CapcomObb
 
                     if (fp.Value.WasModified)
                     {
-                        foreach (var buffer in YieldReadFromExternalFile($"_temp\\{fp.Value.FilePath}"))
+                        foreach (var buffer in YieldReadFromExternalFile($"{ExportTempPath}{fp.Value.FilePath}"))
                             writer.Write(buffer);   
                     }
                     else
@@ -158,7 +155,7 @@ namespace MTTools.Obb.CapcomObb
                 writer.Close();
             }
 
-            Header?.CalculateEntrySectionJamCrc32($"{obbName}_new.obb");
+            Header?.CalculateEntrySectionJamCrc32($"{WorkDirectory}\\{obbName}_new.obb");
         }
 
         private static IEnumerable<byte[]> YieldReadFromExternalFile(string path) 

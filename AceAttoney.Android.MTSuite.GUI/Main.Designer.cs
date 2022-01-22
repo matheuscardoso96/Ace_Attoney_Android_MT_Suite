@@ -33,13 +33,16 @@
             this.MSICapcomObbTool = new System.Windows.Forms.ToolStripMenuItem();
             this.MSIMovieObb = new System.Windows.Forms.ToolStripMenuItem();
             this.MSIToolApk = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TMSIWorkPath = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.obbToolStripMenuItem});
+            this.obbToolStripMenuItem,
+            this.configuraçõesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -77,6 +80,21 @@
             this.MSIToolApk.Text = "Tool de apk";
             this.MSIToolApk.Click += new System.EventHandler(this.MSIToolApkClick);
             // 
+            // configuraçõesToolStripMenuItem
+            // 
+            this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TMSIWorkPath});
+            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
+            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.configuraçõesToolStripMenuItem.Text = "Configurações";
+            // 
+            // TMSIWorkPath
+            // 
+            this.TMSIWorkPath.Name = "TMSIWorkPath";
+            this.TMSIWorkPath.Size = new System.Drawing.Size(180, 22);
+            this.TMSIWorkPath.Text = "Pastra de trabalho";
+            this.TMSIWorkPath.Click += new System.EventHandler(this.TMSIWorkPathClick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -100,5 +118,7 @@
         private ToolStripMenuItem MSICapcomObbTool;
         private ToolStripMenuItem MSIMovieObb;
         private ToolStripMenuItem MSIToolApk;
+        private ToolStripMenuItem configuraçõesToolStripMenuItem;
+        private ToolStripMenuItem TMSIWorkPath;
     }
 }

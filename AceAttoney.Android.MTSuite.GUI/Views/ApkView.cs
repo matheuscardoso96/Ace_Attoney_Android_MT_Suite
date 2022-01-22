@@ -5,9 +5,13 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
 {
     public partial class ApkView : Form
     {
-        public ApkView()
+        private readonly ApkTool _apkTool;
+        private readonly string _workDirectory;
+        public ApkView(string workDirectory)
         {
             InitializeComponent();
+            _apkTool= new ApkTool(workDirectory);
+            _workDirectory = workDirectory;
             GetDecompiledApks();
         }
 
@@ -35,7 +39,7 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
                 SetEnableStatus(false);
                 var apkName = LBDecApks.SelectedItem.ToString();
                 TbxStatus.Text = $"Compilando {apkName}...";
-                await Task.Run(() => CompileApk(_apkExportPath, apkName));
+                await Task.Run(() => CompileApk($"{_workDirectory}\\{_apkExportPath}", apkName));
                 SetEnableStatus(true);
                 MessageBox.Show($"{apkName} compilado com sucesso!");
                 TbxStatus.Text = "";
@@ -83,16 +87,16 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
             return "AA5";
         }
 
-        private static void DecompileApk(string apkPath, string? gameName) 
+        private void DecompileApk(string apkPath, string? gameName) 
         {
             ArgumentNullException.ThrowIfNull(gameName);
-            ApkTool.DecompileApk(apkPath, gameName);
+            _apkTool.DecompileApk(apkPath, gameName);
         }
 
-        public static void CompileApk(string apkExportedPath, string? apkName) 
+        public void CompileApk(string apkExportedPath, string? apkName) 
         {
             ArgumentNullException.ThrowIfNull(apkName);
-            ApkTool.CompileApk($"{apkExportedPath}{apkName}", $"{apkName}");
+            _apkTool.CompileApk($"{apkExportedPath}{apkName}", $"{apkName}");
         }
 
         private void SetEnableStatus(bool isEnable) 
@@ -105,9 +109,14 @@ namespace AceAttoney.Android.MTSuite.GUI.Views
         private void GetDecompiledApks() 
         {
             LBDecApks.Items.Clear();
-            var paths = Directory.GetDirectories(_apkExportPath).Select(d => d.Split('\\').Last()).ToList();
-            paths.ForEach(x => LBDecApks.Items.Add(x));
-            LBDecApks.Refresh();
+            if (Directory.Exists($"{_workDirectory}\\{_apkExportPath}"))
+            {
+                var paths = Directory.GetDirectories($"{_workDirectory}\\{_apkExportPath}").Select(d => d.Split('\\').Last()).ToList();
+                paths.ForEach(x => LBDecApks.Items.Add(x));
+                LBDecApks.Refresh();
+
+            }
+            
         }
 
     }
