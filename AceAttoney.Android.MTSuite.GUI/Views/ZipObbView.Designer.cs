@@ -1,6 +1,6 @@
 ﻿namespace AceAttoney.Android.MTSuite.GUI.Views
 {
-    partial class ZipObb
+    partial class ZipObbView
     {
         /// <summary>
         /// Required designer variable.

@@ -2,12 +2,12 @@
 
 namespace AceAttoney.Android.MTSuite.GUI.Views
 {
-    public partial class ZipObb : Form
+    public partial class ZipObbView : Form
     {
         private const string _unzipSuccessMsg = "Descompactado com sucesso!";
         private const string _unzipFailMsg = "Este não é um obb de vídeo válido.";
         private const string _zipSucessMsg = "Compactado com sucesso!";
-        public ZipObb()
+        public ZipObbView()
         {
             InitializeComponent();
         }
