@@ -21,7 +21,7 @@ namespace AceAttoney.Android.MTSuite.GUI
 
         private void OpenMovieObbToolClick(object sender, EventArgs e)
         {
-            ZipObb zipObb = new();
+            ZipObbView zipObb = new();
             zipObb.ShowDialog();
         }
 
@@ -29,6 +29,11 @@ namespace AceAttoney.Android.MTSuite.GUI
         {
             ApkView apkView = new(ReadSetting("WorkDiretory"));
             apkView.ShowDialog();
+        }
+        private void GmdToolClick(object sender, EventArgs e)
+        {
+            GmdView gmdView = new GmdView();
+            gmdView.ShowDialog();
         }
 
         private void TMSIWorkPathClick(object sender, EventArgs e)
@@ -100,5 +105,7 @@ namespace AceAttoney.Android.MTSuite.GUI
             if (!File.Exists($"{dir}\\apktool.jar"))
                 File.WriteAllBytes($"{dir}\\apktool.jar", Properties.Resources.apktool);
         }
+
+        
     }
 }

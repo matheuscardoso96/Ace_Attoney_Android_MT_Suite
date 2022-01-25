@@ -35,6 +35,8 @@
             this.MSIToolApk = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TMSIWorkPath = new System.Windows.Forms.ToolStripMenuItem();
+            this.gmdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gmdToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,6 +44,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.obbToolStripMenuItem,
+            this.gmdToolStripMenuItem,
             this.configuraçõesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -91,9 +94,24 @@
             // TMSIWorkPath
             // 
             this.TMSIWorkPath.Name = "TMSIWorkPath";
-            this.TMSIWorkPath.Size = new System.Drawing.Size(180, 22);
+            this.TMSIWorkPath.Size = new System.Drawing.Size(169, 22);
             this.TMSIWorkPath.Text = "Pastra de trabalho";
             this.TMSIWorkPath.Click += new System.EventHandler(this.TMSIWorkPathClick);
+            // 
+            // gmdToolStripMenuItem
+            // 
+            this.gmdToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gmdToolToolStripMenuItem});
+            this.gmdToolStripMenuItem.Name = "gmdToolStripMenuItem";
+            this.gmdToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.gmdToolStripMenuItem.Text = "Gmd";
+            // 
+            // gmdToolToolStripMenuItem
+            // 
+            this.gmdToolToolStripMenuItem.Name = "gmdToolToolStripMenuItem";
+            this.gmdToolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gmdToolToolStripMenuItem.Text = "Gmd tool";
+            this.gmdToolToolStripMenuItem.Click += new System.EventHandler(this.GmdToolClick);
             // 
             // Main
             // 
@@ -120,5 +138,7 @@
         private ToolStripMenuItem MSIToolApk;
         private ToolStripMenuItem configuraçõesToolStripMenuItem;
         private ToolStripMenuItem TMSIWorkPath;
+        private ToolStripMenuItem gmdToolStripMenuItem;
+        private ToolStripMenuItem gmdToolToolStripMenuItem;
     }
 }
