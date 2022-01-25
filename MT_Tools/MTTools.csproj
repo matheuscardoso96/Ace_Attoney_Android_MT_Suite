@@ -12,6 +12,7 @@
     <Folder Include="Sew\" />
     <Folder Include="Sngw\" />
     <Folder Include="Tex\" />
+    <Folder Include="Gmd\" />
   </ItemGroup>
 
   <ItemGroup>
