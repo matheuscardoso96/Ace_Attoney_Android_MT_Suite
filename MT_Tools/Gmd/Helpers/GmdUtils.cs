@@ -108,6 +108,51 @@ namespace MTTools.Gmd.Helpers
                 writer.Write(Encoding.UTF8.GetBytes($"{section.Raw}\0"));
         }
 
+        public static string GetTag(ReadOnlySpan<char> text, int index) 
+        {
+            int count = index;
+            StringBuilder tag = new();
+
+            while (text[count] != '>')
+            {
+                tag.Append(text[count]);
+                count++;
+            }
+            
+            tag.Append(text[count]);
+
+            return tag.ToString();
+        }
+
+        public static string ReadDialog(ReadOnlySpan<char> text, int index)
+        {
+            int count = index;
+            StringBuilder dialog = new();
+            const char tagStart = '<';
+            const string page = "<PAGE>";
+            
+            while (true)
+            {
+                if (text[count] == tagStart)
+                {
+                    string tag = GetTag(text, count);
+                    dialog.Append(tag);
+                    count+= tag.Length;
+
+                    if (tag == page)
+                        break;
+                    
+                }
+                else
+                {
+                    dialog.Append(text[count]);
+                    count++;
+                }
+            }
+
+            return dialog.ToString();
+        }
+
     }
  
 }
